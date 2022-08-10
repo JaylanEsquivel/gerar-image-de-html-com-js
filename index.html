@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Jaylan Esquivel">
+    <title>Gerando Imagen com JS</title>
+	<style>
+	
+		body{
+		  display: flex;
+		  justify-content: center;
+		  align-items: center;	
+		  flex-direction: column;
+		  width: 100%;		  
+		}
+		#capture{
+			width: 50%;
+		}
+	
+	</style>
+	
+</head>
+<body>
+	<div id="capture" style="padding: 10px; background: #f5da55">
+		<h4 style="color: #000; ">Hello world!</h4>
+	</div>
+	
+	<p align="center"><button onclick="downloadimage();">Exportar como imagen</button></p> 
+	<div id="htmltoimage"></div>
+
+	
+	
+	<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+	<script>
+		
+		function downloadimage(){
+				 var container = document.getElementById("capture");
+				 html2canvas(container,{allowTaint : true}).then(function(canvas) {
+					 var link = document.createElement("a");
+					 document.body.appendChild(link);
+					 link.download = "html_image.jpg";
+					 link.href = canvas.toDataURL();
+					 link.target = "_blank";
+					 link.click();
+				 });
+		}
+
+	</script>
+	
+</body>
+</html>
